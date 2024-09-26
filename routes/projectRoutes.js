@@ -5,21 +5,22 @@ const Projects = require('../model/projectModel')
 router.get('/all', async (req, res) => {
     try {
         const fetchedprojects = await Projects.find()
-        res.json(fetchedprojects).status(200)
+        res.status(200).json(fetchedprojects)
     }catch (error) {
-        res.json(error).status(500)
+        res.status(500).json(error)
     }
 })
 
 router.post('/add', async (req, res) => {
     try {
         const newprojectdata = new Projects(req.body)
-        const ( title || !desc) {
-            res.json({ message: "Title & Desc Required" }).status(500)
+        const { title, desc } = newprojectdata
+        if ( !title || !desc) {
+            res.status(400).json({ message: "Title & Desc Required" })
         }
         const savedata = await newprojectdata.save()
-        res.json(savedata).status(201)
+        res.status(201).json(savedata)
     } catch (error) {
-        res.join(error).status(500)
+        res.status(500).json(error)
     }
 })

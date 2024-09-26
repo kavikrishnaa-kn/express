@@ -1,8 +1,8 @@
-const mangoose = require('mangoose')
+const mangoose = require('mongoose')
 
-mangoose.connect(process.env.MONGOURL || "mongodb+srv://knkavikrishnaa:krishnaa@kavi.xwwdu.mongodb.net/?retryWrites=true&w=majority&appName=kavi")
-const connection = mangoose.connection;
+mongoose.connect(process.env.MONGOURL || "mongodb+srv://knkavikrishnaa:krishnaa@kavi.xwwdu.mongodb.net/?retryWrites=true&w=majority&appName=kavi")
+const connection = mongoose.connection;
 connection.on('connected', () => console.log("DB Connected"))
 connection.on('error', () => console.log("DB Error"))
 
-module.exports = mangoose
+module.exports = mongoose
